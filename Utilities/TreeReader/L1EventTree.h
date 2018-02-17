@@ -12,7 +12,7 @@
 #include <memory>
 
 // Header file for the classes stored in the Tree
-#include "./DataFormats/L1TNtuples/L1AnalysisAllDataformats.h"
+#include "../DataFormats/L1TNtuples/L1AnalysisAllDataformats.h"
 
 
 class L1EventTree {

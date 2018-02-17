@@ -31,21 +31,111 @@ class L1UpgradeTfMuonTree {
   virtual void         Clear           (void);
 
   // GETTER
-  unsigned short int      BMTF_nTfMuons()              {  SetBranch({"L1UpgradeBmtfMuon" , "nTfMuons"             });  return GET(L1UpgradeBmtfMuon_).nTfMuons;              }
-  std::vector<short int>  BMTF_tfMuonHwPt()            {  SetBranch({"L1UpgradeBmtfMuon" , "tfMuonHwPt"           });  return GET(L1UpgradeBmtfMuon_).tfMuonHwPt;            }
-  std::vector<short int>  BMTF_tfMuonHwEta()           {  SetBranch({"L1UpgradeBmtfMuon" , "tfMuonHwEta"          });  return GET(L1UpgradeBmtfMuon_).tfMuonHwEta;           }
-  std::vector<short int>  BMTF_tfMuonHwPhi()           {  SetBranch({"L1UpgradeBmtfMuon" , "tfMuonHwPhi"          });  return GET(L1UpgradeBmtfMuon_).tfMuonHwPhi;           }
-  std::vector<short int>  BMTF_tfMuonGlobalPhi()       {  SetBranch({"L1UpgradeBmtfMuon" , "tfMuonGlobalPhi"      });  return GET(L1UpgradeBmtfMuon_).tfMuonGlobalPhi;       }
-  std::vector<short int>  BMTF_tfMuonHwSign()          {  SetBranch({"L1UpgradeBmtfMuon" , "tfMuonHwSign"         });  return GET(L1UpgradeBmtfMuon_).tfMuonHwSign;          }
-  std::vector<short int>  BMTF_tfMuonHwSignValid()     {  SetBranch({"L1UpgradeBmtfMuon" , "tfMuonHwSignValid"    });  return GET(L1UpgradeBmtfMuon_).tfMuonHwSignValid;     }
-  std::vector<short int>  BMTF_tfMuonHwQual()          {  SetBranch({"L1UpgradeBmtfMuon" , "tfMuonHwQual"         });  return GET(L1UpgradeBmtfMuon_).tfMuonHwQual;          }
-  std::vector<short int>  BMTF_tfMuonLink()            {  SetBranch({"L1UpgradeBmtfMuon" , "tfMuonLink"           });  return GET(L1UpgradeBmtfMuon_).tfMuonLink;            }
-  std::vector<short int>  BMTF_tfMuonProcessor()       {  SetBranch({"L1UpgradeBmtfMuon" , "tfMuonProcessor"      });  return GET(L1UpgradeBmtfMuon_).tfMuonProcessor;       }
-  std::vector<short int>  BMTF_tfMuonTrackFinderType() {  SetBranch({"L1UpgradeBmtfMuon" , "tfMuonTrackFinderType"});  return GET(L1UpgradeBmtfMuon_).tfMuonTrackFinderType; }
-  std::vector<short int>  BMTF_tfMuonHwHF()            {  SetBranch({"L1UpgradeBmtfMuon" , "tfMuonHwHF"           });  return GET(L1UpgradeBmtfMuon_).tfMuonHwHF;            }
-  std::vector<short int>  BMTF_tfMuonBx()              {  SetBranch({"L1UpgradeBmtfMuon" , "tfMuonBx"             });  return GET(L1UpgradeBmtfMuon_).tfMuonBx;              }
-  std::vector<short int>  BMTF_tfMuonWh()              {  SetBranch({"L1UpgradeBmtfMuon" , "tfMuonWh"             });  return GET(L1UpgradeBmtfMuon_).tfMuonWh;              }
-  std::vector<short int>  BMTF_tfMuonTrAdd()           {  SetBranch({"L1UpgradeBmtfMuon" , "tfMuonTrAdd"          });  return GET(L1UpgradeBmtfMuon_).tfMuonTrAdd;           }
+  unsigned short int      nTfMuons(const std::string type) {
+    if (type=="BMTF") { SetBranch({"L1UpgradeBmtfMuon" , "nTfMuons" });  return GET(L1UpgradeBmtfMuon_).nTfMuons; }
+    if (type=="OMTF") { SetBranch({"L1UpgradeOmtfMuon" , "nTfMuons" });  return GET(L1UpgradeOmtfMuon_).nTfMuons; }
+    if (type=="EMTF") { SetBranch({"L1UpgradeEmtfMuon" , "nTfMuons" });  return GET(L1UpgradeEmtfMuon_).nTfMuons; }
+    std::cout << "[ERROR] L1UpgradeTfMuon Type " << type << " is invalid!" << std::endl;
+    return 0;
+  }
+  std::vector<short int>  tfMuonHwPt(const std::string type) {
+    if (type=="BMTF") { SetBranch({"L1UpgradeBmtfMuon" , "tfMuonHwPt" });  return GET(L1UpgradeBmtfMuon_).tfMuonHwPt; }
+    if (type=="OMTF") { SetBranch({"L1UpgradeOmtfMuon" , "tfMuonHwPt" });  return GET(L1UpgradeOmtfMuon_).tfMuonHwPt; }
+    if (type=="EMTF") { SetBranch({"L1UpgradeEmtfMuon" , "tfMuonHwPt" });  return GET(L1UpgradeEmtfMuon_).tfMuonHwPt; }
+    std::cout << "[ERROR] L1UpgradeTfMuon Type " << type << " is invalid!" << std::endl;
+    return std::vector<short int>();
+  }
+  std::vector<short int>  tfMuonHwEta(const std::string type) {
+    if (type=="BMTF") { SetBranch({"L1UpgradeBmtfMuon" , "tfMuonHwEta" });  return GET(L1UpgradeBmtfMuon_).tfMuonHwEta; }
+    if (type=="OMTF") { SetBranch({"L1UpgradeOmtfMuon" , "tfMuonHwEta" });  return GET(L1UpgradeOmtfMuon_).tfMuonHwEta; }
+    if (type=="EMTF") { SetBranch({"L1UpgradeEmtfMuon" , "tfMuonHwEta" });  return GET(L1UpgradeEmtfMuon_).tfMuonHwEta; }
+    std::cout << "[ERROR] L1UpgradeTfMuon Type " << type << " is invalid!" << std::endl;
+    return std::vector<short int>();
+  }
+  std::vector<short int>  tfMuonHwPhi(const std::string type) {
+    if (type=="BMTF") { SetBranch({"L1UpgradeBmtfMuon" , "tfMuonHwPhi" });  return GET(L1UpgradeBmtfMuon_).tfMuonHwPhi; }
+    if (type=="OMTF") { SetBranch({"L1UpgradeOmtfMuon" , "tfMuonHwPhi" });  return GET(L1UpgradeOmtfMuon_).tfMuonHwPhi; }
+    if (type=="EMTF") { SetBranch({"L1UpgradeEmtfMuon" , "tfMuonHwPhi" });  return GET(L1UpgradeEmtfMuon_).tfMuonHwPhi; }
+    std::cout << "[ERROR] L1UpgradeTfMuon Type " << type << " is invalid!" << std::endl;
+    return std::vector<short int>();
+  }
+  std::vector<short int>  tfMuonGlobalPhi(const std::string type) {
+    if (type=="BMTF") { SetBranch({"L1UpgradeBmtfMuon" , "tfMuonGlobalPhi" });  return GET(L1UpgradeBmtfMuon_).tfMuonGlobalPhi; }
+    if (type=="OMTF") { SetBranch({"L1UpgradeOmtfMuon" , "tfMuonGlobalPhi" });  return GET(L1UpgradeOmtfMuon_).tfMuonGlobalPhi; }
+    if (type=="EMTF") { SetBranch({"L1UpgradeEmtfMuon" , "tfMuonGlobalPhi" });  return GET(L1UpgradeEmtfMuon_).tfMuonGlobalPhi; }
+    std::cout << "[ERROR] L1UpgradeTfMuon Type " << type << " is invalid!" << std::endl;
+    return std::vector<short int>();
+  }
+  std::vector<short int>  tfMuonHwSign(const std::string type) {
+    if (type=="BMTF") { SetBranch({"L1UpgradeBmtfMuon" , "tfMuonHwSign" });  return GET(L1UpgradeBmtfMuon_).tfMuonHwSign; }
+    if (type=="OMTF") { SetBranch({"L1UpgradeOmtfMuon" , "tfMuonHwSign" });  return GET(L1UpgradeOmtfMuon_).tfMuonHwSign; }
+    if (type=="EMTF") { SetBranch({"L1UpgradeEmtfMuon" , "tfMuonHwSign" });  return GET(L1UpgradeEmtfMuon_).tfMuonHwSign; }
+    std::cout << "[ERROR] L1UpgradeTfMuon Type " << type << " is invalid!" << std::endl;
+    return std::vector<short int>();
+  }
+  std::vector<short int>  tfMuonHwSignValid(const std::string type) {
+    if (type=="BMTF") { SetBranch({"L1UpgradeBmtfMuon" , "tfMuonHwSignValid" });  return GET(L1UpgradeBmtfMuon_).tfMuonHwSignValid; }
+    if (type=="OMTF") { SetBranch({"L1UpgradeOmtfMuon" , "tfMuonHwSignValid" });  return GET(L1UpgradeOmtfMuon_).tfMuonHwSignValid; }
+    if (type=="EMTF") { SetBranch({"L1UpgradeEmtfMuon" , "tfMuonHwSignValid" });  return GET(L1UpgradeEmtfMuon_).tfMuonHwSignValid; }
+    std::cout << "[ERROR] L1UpgradeTfMuon Type " << type << " is invalid!" << std::endl;
+    return std::vector<short int>();
+  }
+  std::vector<short int>  tfMuonHwQual(const std::string type) {
+    if (type=="BMTF") { SetBranch({"L1UpgradeBmtfMuon" , "tfMuonHwQual" });  return GET(L1UpgradeBmtfMuon_).tfMuonHwQual; }
+    if (type=="OMTF") { SetBranch({"L1UpgradeOmtfMuon" , "tfMuonHwQual" });  return GET(L1UpgradeOmtfMuon_).tfMuonHwQual; }
+    if (type=="EMTF") { SetBranch({"L1UpgradeEmtfMuon" , "tfMuonHwQual" });  return GET(L1UpgradeEmtfMuon_).tfMuonHwQual; }
+    std::cout << "[ERROR] L1UpgradeTfMuon Type " << type << " is invalid!" << std::endl;
+    return std::vector<short int>();
+  }
+  std::vector<short int>  tfMuonLink(const std::string type) {
+    if (type=="BMTF") { SetBranch({"L1UpgradeBmtfMuon" , "tfMuonLink" });  return GET(L1UpgradeBmtfMuon_).tfMuonLink; }
+    if (type=="OMTF") { SetBranch({"L1UpgradeOmtfMuon" , "tfMuonLink" });  return GET(L1UpgradeOmtfMuon_).tfMuonLink; }
+    if (type=="EMTF") { SetBranch({"L1UpgradeEmtfMuon" , "tfMuonLink" });  return GET(L1UpgradeEmtfMuon_).tfMuonLink; }
+    std::cout << "[ERROR] L1UpgradeTfMuon Type " << type << " is invalid!" << std::endl;
+    return std::vector<short int>();
+  }
+  std::vector<short int>  tfMuonProcessor(const std::string type) {
+    if (type=="BMTF") { SetBranch({"L1UpgradeBmtfMuon" , "tfMuonProcessor" });  return GET(L1UpgradeBmtfMuon_).tfMuonProcessor; }
+    if (type=="OMTF") { SetBranch({"L1UpgradeOmtfMuon" , "tfMuonProcessor" });  return GET(L1UpgradeOmtfMuon_).tfMuonProcessor; }
+    if (type=="EMTF") { SetBranch({"L1UpgradeEmtfMuon" , "tfMuonProcessor" });  return GET(L1UpgradeEmtfMuon_).tfMuonProcessor; }
+    std::cout << "[ERROR] L1UpgradeTfMuon Type " << type << " is invalid!" << std::endl;
+    return std::vector<short int>();
+  }
+  std::vector<short int>  tfMuonTrackFinderType(const std::string type) {
+    if (type=="BMTF") { SetBranch({"L1UpgradeBmtfMuon" , "tfMuonTrackFinderType" });  return GET(L1UpgradeBmtfMuon_).tfMuonTrackFinderType; }
+    if (type=="OMTF") { SetBranch({"L1UpgradeOmtfMuon" , "tfMuonTrackFinderType" });  return GET(L1UpgradeOmtfMuon_).tfMuonTrackFinderType; }
+    if (type=="EMTF") { SetBranch({"L1UpgradeEmtfMuon" , "tfMuonTrackFinderType" });  return GET(L1UpgradeEmtfMuon_).tfMuonTrackFinderType; }
+    std::cout << "[ERROR] L1UpgradeTfMuon Type " << type << " is invalid!" << std::endl;
+    return std::vector<short int>();
+  }
+  std::vector<short int>  tfMuonHwHF(const std::string type) {
+    if (type=="BMTF") { SetBranch({"L1UpgradeBmtfMuon" , "tfMuonHwHF" });  return GET(L1UpgradeBmtfMuon_).tfMuonHwHF; }
+    if (type=="OMTF") { SetBranch({"L1UpgradeOmtfMuon" , "tfMuonHwHF" });  return GET(L1UpgradeOmtfMuon_).tfMuonHwHF; }
+    if (type=="EMTF") { SetBranch({"L1UpgradeEmtfMuon" , "tfMuonHwHF" });  return GET(L1UpgradeEmtfMuon_).tfMuonHwHF; }
+    std::cout << "[ERROR] L1UpgradeTfMuon Type " << type << " is invalid!" << std::endl;
+    return std::vector<short int>();
+  }
+  std::vector<short int>  tfMuonBx(const std::string type) {
+    if (type=="BMTF") { SetBranch({"L1UpgradeBmtfMuon" , "tfMuonBx" });  return GET(L1UpgradeBmtfMuon_).tfMuonBx; }
+    if (type=="OMTF") { SetBranch({"L1UpgradeOmtfMuon" , "tfMuonBx" });  return GET(L1UpgradeOmtfMuon_).tfMuonBx; }
+    if (type=="EMTF") { SetBranch({"L1UpgradeEmtfMuon" , "tfMuonBx" });  return GET(L1UpgradeEmtfMuon_).tfMuonBx; }
+    std::cout << "[ERROR] L1UpgradeTfMuon Type " << type << " is invalid!" << std::endl;
+    return std::vector<short int>();
+  }
+  std::vector<short int>  tfMuonWh(const std::string type) {
+    if (type=="BMTF") { SetBranch({"L1UpgradeBmtfMuon" , "tfMuonWh" });  return GET(L1UpgradeBmtfMuon_).tfMuonWh; }
+    if (type=="OMTF") { SetBranch({"L1UpgradeOmtfMuon" , "tfMuonWh" });  return GET(L1UpgradeOmtfMuon_).tfMuonWh; }
+    if (type=="EMTF") { SetBranch({"L1UpgradeEmtfMuon" , "tfMuonWh" });  return GET(L1UpgradeEmtfMuon_).tfMuonWh; }
+    std::cout << "[ERROR] L1UpgradeTfMuon Type " << type << " is invalid!" << std::endl;
+    return std::vector<short int>();
+  }
+  std::vector<short int>  tfMuonTrAdd(const std::string type) {
+    if (type=="BMTF") { SetBranch({"L1UpgradeBmtfMuon" , "tfMuonTrAdd" });  return GET(L1UpgradeBmtfMuon_).tfMuonTrAdd; }
+    if (type=="OMTF") { SetBranch({"L1UpgradeOmtfMuon" , "tfMuonTrAdd" });  return GET(L1UpgradeOmtfMuon_).tfMuonTrAdd; }
+    if (type=="EMTF") { SetBranch({"L1UpgradeEmtfMuon" , "tfMuonTrAdd" });  return GET(L1UpgradeEmtfMuon_).tfMuonTrAdd; }
+    std::cout << "[ERROR] L1UpgradeTfMuon Type " << type << " is invalid!" << std::endl;
+    return std::vector<short int>();
+  }
   //
   int                     BMTF_phSize()                {  SetBranch({"L1UpgradeBmtfInputs" , "phSize"             });  return GET(L1UpgradeBmtfInputs_).phSize;              }
   std::vector<int>        BMTF_phBx()                  {  SetBranch({"L1UpgradeBmtfInputs" , "phBx"               });  return GET(L1UpgradeBmtfInputs_).phBx;                }
@@ -63,38 +153,6 @@ class L1UpgradeTfMuonTree {
   std::vector<int>        BMTF_thSt()                  {  SetBranch({"L1UpgradeBmtfInputs" , "thSt"               });  return GET(L1UpgradeBmtfInputs_).thSt;                }
   std::vector<int>        BMTF_thTheta()               {  SetBranch({"L1UpgradeBmtfInputs" , "thTheta"            });  return GET(L1UpgradeBmtfInputs_).thTheta;             }
   std::vector<int>        BMTF_thCode()                {  SetBranch({"L1UpgradeBmtfInputs" , "thCode"             });  return GET(L1UpgradeBmtfInputs_).thCode;              }
-  //
-  unsigned short int      OMTF_nTfMuons()              {  SetBranch({"L1UpgradeOmtfMuon" , "nTfMuons"             });  return GET(L1UpgradeOmtfMuon_).nTfMuons;              }
-  std::vector<short int>  OMTF_tfMuonHwPt()            {  SetBranch({"L1UpgradeOmtfMuon" , "tfMuonHwPt"           });  return GET(L1UpgradeOmtfMuon_).tfMuonHwPt;            }
-  std::vector<short int>  OMTF_tfMuonHwEta()           {  SetBranch({"L1UpgradeOmtfMuon" , "tfMuonHwEta"          });  return GET(L1UpgradeOmtfMuon_).tfMuonHwEta;           }
-  std::vector<short int>  OMTF_tfMuonHwPhi()           {  SetBranch({"L1UpgradeOmtfMuon" , "tfMuonHwPhi"          });  return GET(L1UpgradeOmtfMuon_).tfMuonHwPhi;           }
-  std::vector<short int>  OMTF_tfMuonGlobalPhi()       {  SetBranch({"L1UpgradeOmtfMuon" , "tfMuonGlobalPhi"      });  return GET(L1UpgradeOmtfMuon_).tfMuonGlobalPhi;       }
-  std::vector<short int>  OMTF_tfMuonHwSign()          {  SetBranch({"L1UpgradeOmtfMuon" , "tfMuonHwSign"         });  return GET(L1UpgradeOmtfMuon_).tfMuonHwSign;          }
-  std::vector<short int>  OMTF_tfMuonHwSignValid()     {  SetBranch({"L1UpgradeOmtfMuon" , "tfMuonHwSignValid"    });  return GET(L1UpgradeOmtfMuon_).tfMuonHwSignValid;     }
-  std::vector<short int>  OMTF_tfMuonHwQual()          {  SetBranch({"L1UpgradeOmtfMuon" , "tfMuonHwQual"         });  return GET(L1UpgradeOmtfMuon_).tfMuonHwQual;          }
-  std::vector<short int>  OMTF_tfMuonLink()            {  SetBranch({"L1UpgradeOmtfMuon" , "tfMuonLink"           });  return GET(L1UpgradeOmtfMuon_).tfMuonLink;            }
-  std::vector<short int>  OMTF_tfMuonProcessor()       {  SetBranch({"L1UpgradeOmtfMuon" , "tfMuonProcessor"      });  return GET(L1UpgradeOmtfMuon_).tfMuonProcessor;       }
-  std::vector<short int>  OMTF_tfMuonTrackFinderType() {  SetBranch({"L1UpgradeOmtfMuon" , "tfMuonTrackFinderType"});  return GET(L1UpgradeOmtfMuon_).tfMuonTrackFinderType; }
-  std::vector<short int>  OMTF_tfMuonHwHF()            {  SetBranch({"L1UpgradeOmtfMuon" , "tfMuonHwHF"           });  return GET(L1UpgradeOmtfMuon_).tfMuonHwHF;            }
-  std::vector<short int>  OMTF_tfMuonBx()              {  SetBranch({"L1UpgradeOmtfMuon" , "tfMuonBx"             });  return GET(L1UpgradeOmtfMuon_).tfMuonBx;              }
-  std::vector<short int>  OMTF_tfMuonWh()              {  SetBranch({"L1UpgradeOmtfMuon" , "tfMuonWh"             });  return GET(L1UpgradeOmtfMuon_).tfMuonWh;              }
-  std::vector<short int>  OMTF_tfMuonTrAdd()           {  SetBranch({"L1UpgradeOmtfMuon" , "tfMuonTrAdd"          });  return GET(L1UpgradeOmtfMuon_).tfMuonTrAdd;           }
-  //
-  unsigned short int      EMTF_nTfMuons()              {  SetBranch({"L1UpgradeEmtfMuon" , "nTfMuons"             });  return GET(L1UpgradeEmtfMuon_).nTfMuons;              }
-  std::vector<short int>  EMTF_tfMuonHwPt()            {  SetBranch({"L1UpgradeEmtfMuon" , "tfMuonHwPt"           });  return GET(L1UpgradeEmtfMuon_).tfMuonHwPt;            }
-  std::vector<short int>  EMTF_tfMuonHwEta()           {  SetBranch({"L1UpgradeEmtfMuon" , "tfMuonHwEta"          });  return GET(L1UpgradeEmtfMuon_).tfMuonHwEta;           }
-  std::vector<short int>  EMTF_tfMuonHwPhi()           {  SetBranch({"L1UpgradeEmtfMuon" , "tfMuonHwPhi"          });  return GET(L1UpgradeEmtfMuon_).tfMuonHwPhi;           }
-  std::vector<short int>  EMTF_tfMuonGlobalPhi()       {  SetBranch({"L1UpgradeEmtfMuon" , "tfMuonGlobalPhi"      });  return GET(L1UpgradeEmtfMuon_).tfMuonGlobalPhi;       }
-  std::vector<short int>  EMTF_tfMuonHwSign()          {  SetBranch({"L1UpgradeEmtfMuon" , "tfMuonHwSign"         });  return GET(L1UpgradeEmtfMuon_).tfMuonHwSign;          }
-  std::vector<short int>  EMTF_tfMuonHwSignValid()     {  SetBranch({"L1UpgradeEmtfMuon" , "tfMuonHwSignValid"    });  return GET(L1UpgradeEmtfMuon_).tfMuonHwSignValid;     }
-  std::vector<short int>  EMTF_tfMuonHwQual()          {  SetBranch({"L1UpgradeEmtfMuon" , "tfMuonHwQual"         });  return GET(L1UpgradeEmtfMuon_).tfMuonHwQual;          }
-  std::vector<short int>  EMTF_tfMuonLink()            {  SetBranch({"L1UpgradeEmtfMuon" , "tfMuonLink"           });  return GET(L1UpgradeEmtfMuon_).tfMuonLink;            }
-  std::vector<short int>  EMTF_tfMuonProcessor()       {  SetBranch({"L1UpgradeEmtfMuon" , "tfMuonProcessor"      });  return GET(L1UpgradeEmtfMuon_).tfMuonProcessor;       }
-  std::vector<short int>  EMTF_tfMuonTrackFinderType() {  SetBranch({"L1UpgradeEmtfMuon" , "tfMuonTrackFinderType"});  return GET(L1UpgradeEmtfMuon_).tfMuonTrackFinderType; }
-  std::vector<short int>  EMTF_tfMuonHwHF()            {  SetBranch({"L1UpgradeEmtfMuon" , "tfMuonHwHF"           });  return GET(L1UpgradeEmtfMuon_).tfMuonHwHF;            }
-  std::vector<short int>  EMTF_tfMuonBx()              {  SetBranch({"L1UpgradeEmtfMuon" , "tfMuonBx"             });  return GET(L1UpgradeEmtfMuon_).tfMuonBx;              }
-  std::vector<short int>  EMTF_tfMuonWh()              {  SetBranch({"L1UpgradeEmtfMuon" , "tfMuonWh"             });  return GET(L1UpgradeEmtfMuon_).tfMuonWh;              }
-  std::vector<short int>  EMTF_tfMuonTrAdd()           {  SetBranch({"L1UpgradeEmtfMuon" , "tfMuonTrAdd"          });  return GET(L1UpgradeEmtfMuon_).tfMuonTrAdd;           }
 
  private:
 
